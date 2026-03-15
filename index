@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stray Kids</title>
+  <style>
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    /* HERO: imagen que cubre toda la pantalla */
+    .hero {
+      background-image: url("imagenes/hero\\ pic.jpg"); /* vincula la carpeta de imagenes  */
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+
+      height: 100vh;
+      width: 100%;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+
+      color: white;
+      position: relative;
+    }
+
+    /* Capa oscura sobre la imagen */
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
+    }
+
+    .hero h1, .hero p {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+    }
+
+    /* SECCIÓN DE INFO */
+    .contenido {
+      padding: 60px 40px;
+      max-width: 800px;
+      margin: 0 auto; /* centra el contenido */
+    }
+
+    .contenido h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+
+    .contenido p {
+      font-size: 1.1rem;
+      line-height: 1.8; /* espaciado entre líneas */
+      margin-bottom: 15px;
+      color: #333;
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <header class="hero">
+    <h1>Stray Kids</h1>
+    <p>스트레이 키즈 </p>
+  </header>
+
+  <!-- INFO -->
+  <section class="contenido">
+    <h2>Who is Stray Kids?</h2>
+    <p>Stray Kids (스트레이 키즈) is a South Korean K-pop boyband formed by JYP Entertainment.</p>
+    <p>The group consists of eight members: Chan, Lee Know, Changbin, Hyunjin, Han, Felix, Seungmin and I.N.</p>
+  </section>
+
+</body>
+</html>
