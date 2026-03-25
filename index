@@ -4,7 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Stray Kids</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+ 
+
   <style>
+
 
     * {
       margin: 0;
@@ -16,27 +20,23 @@
       font-family: Arial, sans-serif;
     }
 
-    /* HERO: imagen que cubre toda la pantalla */
+    /* HERO */
     .hero {
-      background-image: url("imagenes/hero\\ pic.jpg"); /* vincula la carpeta de imagenes  */
+      background-image: url("imagenes/actual-heropic.jpg");
       background-size: cover;
       background-position: center;
       background-attachment: fixed;
-
       height: 100vh;
       width: 100%;
-
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       text-align: center;
-
       color: white;
       position: relative;
     }
 
-    /* Capa oscura sobre la imagen */
     .hero::before {
       content: "";
       position: absolute;
@@ -60,39 +60,465 @@
 
     /* SECCIÓN DE INFO */
     .contenido {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 40px;
       padding: 60px 40px;
-      max-width: 800px;
-      margin: 0 auto; /* centra el contenido */
+      max-width: 1100px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
     }
 
-    .contenido h2 {
+    .video {
+      flex: 1;
+      min-width: 300px;
+    }
+
+    .video iframe {
+      width: 100%;
+      height: 315px;
+    }
+
+    .texto {
+      flex: 1;
+    }
+
+    .texto h2 {
       font-size: 2rem;
       margin-bottom: 20px;
     }
 
-    .contenido p {
+    .texto p {
       font-size: 1.1rem;
-      line-height: 1.8; /* espaciado entre líneas */
+      line-height: 1.8;
       margin-bottom: 15px;
       color: #333;
     }
 
+    /* DISCOGRAFÍA */
+    .discografia {
+      padding: 60px 40px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .discografia h2 {
+      font-size: 2rem;
+      margin-bottom: 30px;
+    }
+
+    .albums {
+      display: flex;
+      flex-direction: row;
+      gap: 20px;
+      overflow-x: auto;
+      padding-bottom: 20px;
+    }
+
+.albums {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 20px;
+}
+
+    .album:hover {
+      transform: scale(1.05);
+    }
+
+    .album img {
+      width: 180px;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+    .album p {
+    margin-top: 8px;
+    font-size: 1.1rem;
+    font-family: "Bebas Neue", sans-serif;
+    font-weight: bold;
+    letter-spacing: 1px;
+    }
+
+/* MIEMBROS */
+    .members {
+    padding: 60px 40px;
+    max-width: 1100px;
+    margin: 0 auto;
+    }
+
+    .members h2 {
+    font-size: 2rem;
+    margin-bottom: 30px;
+    }
+
+    .member {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    overflow-x: auto;
+    padding-bottom: 20px;
+    }
+
+    .member:hover {
+    transform: scale(1.05);
+    }
+
+
+    .member {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 20px;
+    }
+
+
+    .member img {
+    width: 180px;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 8px;
+    }
+    .member p {
+    margin-top: 8px;
+    font-size: 1.1rem;
+    font-family: "Bebas Neue", sans-serif;
+    font-weight: bold;
+    letter-spacing: 1px;
+    }
+
+
+/* FOOTER */
+.footer {
+  margin-top: 60px;
+  padding: 40px;
+  background: #222;
+  color: white;
+  text-align: center;
+}
+
+.footer p {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 1.5rem;
+  letter-spacing: 2px;
+  margin-bottom: 20px;
+}
+
+.redes {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-bottom: 24px;
+}
+
+.red {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: white;
+  transition: transform 0.2s, opacity 0.2s;
+}
+
+.red:hover {
+  transform: scale(1.1);
+  opacity: 0.8;
+}
+
+.red img {
+  width: 32px;
+  height: 32px;
+  filter: brightness(0) invert(1);
+}
+
+.red span {
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+}
+
+.footer-copy {
+  font-size: 0.8rem !important;
+  color: #aaa;
+  letter-spacing: 1px;
+}
+
+
+
   </style>
 </head>
+
+
+
 <body>
 
   <!-- HERO -->
   <header class="hero">
     <h1>Stray Kids</h1>
-    <p>스트레이 키즈 </p>
+    <p>스트레이 키즈</p>
   </header>
 
   <!-- INFO -->
   <section class="contenido">
-    <h2>Who is Stray Kids?</h2>
-    <p>Stray Kids (스트레이 키즈) is a South Korean K-pop boyband formed by JYP Entertainment.</p>
-    <p>The group consists of eight members: Chan, Lee Know, Changbin, Hyunjin, Han, Felix, Seungmin and I.N.</p>
+    <div class="video">
+      <iframe src="https://www.youtube.com/embed/E8i32NXMxnc?si=1o5yiZTfv1VRCUQH" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
+    <div class="texto">
+      <h2>Who is Stray Kids?</h2>
+      <p>Stray Kids (스트레이 키즈) is a South Korean K-pop boyband formed by JYP Entertainment.</p>
+      <p>The group consists of eight members: Chan, Lee Know, Changbin, Hyunjin, Han, Felix, Seungmin and I.N.</p>
+    </div>
   </section>
 
+  <!-- DISCOGRAFÍA -->
+  <section class="discografia">
+    <h2>Discography</h2>
+    <div class="albums">
+
+
+     <a href="doit.html" class="album">
+        <img src="imagenes/doit.jpg" alt="Do it">
+        <p>Do it</p>
+      </a>
+
+    <a href="karma.html" class="album">
+        <img src="imagenes/karma.jpg" alt="Karma">
+        <p>Karma</p>
+      </a>
+
+    <a href="hollow.html" class="album">
+        <img src="imagenes/hollow.jpg" alt="Hollow">
+        <p>Hollow</p>
+      </a>
+
+    <a href="hop.html" class="album">
+        <img src="imagenes/hop1.jpg" alt="Hop">
+        <p>Hop</p>
+      </a>
+
+    <a href="giant.html" class="album">
+        <img src="imagenes/giant.jpg" alt="Giant">
+        <p>Giant</p>
+      </a>
+
+    <a href="slash.html" class="album">
+        <img src="imagenes/slash.jpg" alt="Slash">
+        <p>Slash</p>
+      </a>
+    
+    <a href="ate.html" class="album">
+        <img src="imagenes/ate.jpg" alt="Ate">
+        <p>Ate</p>
+      </a>
+
+    <a href="star.html" class="album">
+        <img src="imagenes/star.jpg" alt="Rock-Star">
+        <p>Rock-Star</p>
+      </a>
+
+      <a href="cincoestrella.html" class="album">
+        <img src="imagenes/5-star.jpg" alt="5 Star">
+        <p>5 Star</p>
+      </a>
+
+    <a href="replay.html" class="album">
+        <img src="imagenes/SKZ-REPLAY.jpg" alt="SKZ-REPLAY">
+        <p>SKZ-REPLAY</p>
+      </a>
+
+    <a href ="maxident.html" class="album">
+        <img src="imagenes/maxident.jpg" alt="Maxident">
+        <p>Maxident</p>
+      </a>
+
+    <a href="timeout.html" class="album">
+        <img src="imagenes/Mixtape Time Out.jpg" alt="Mixtape Time Out">
+        <p>Mixtape Time Out</p>
+      </a>
+
+    <a href="ODDINARY.html" class="album">
+        <img src="imagenes/ODDINARY.jpg" alt="ODDINARY">
+        <p>ODDINARY</p>
+      </a>
+
+    <a href="2021.html" class="album">
+        <img src="imagenes/2021.jpg" alt="SKZ 2021">
+        <p>SKZ 2021</p>
+      </a>
+
+    <a href="evel.html" class="album">
+        <img src="imagenes/evel.jpg" alt="Christmas EveL">
+        <p>Christmas EveL</p>
+      </a>
+
+    <a href="NOEASY.html" class="album">
+        <img src="imagenes/noeasy.jpg" alt="NOEASY">
+        <p>NOEASY</p>
+      </a>
+
+    <a href="oh.html" class="album">
+        <img src="imagenes/mixtape oh.jpg" alt="Mixtape : 애">
+        <p>Mixtape : 애</p>
+      </a>
+
+
+    <a href="album.html" class="album">
+        <img src="imagenes/all in.jpg" alt="All In">
+        <p>All In</p>
+      </a>
+
+    <a href="album.html" class="album">
+        <img src="imagenes/in.jpg" alt="IN">
+        <p>IN</p>
+      </a>
+    <a href="album.html" class="album">
+        <img src="imagenes/go.jpg" alt="GO">
+        <p>GO</p>
+      </a>  
+    
+    <a href="album.html" class="album">
+        <img src="imagenes/top.jpg" alt="TOP">
+        <p>TOP</p>
+      </a>
+
+    <a href="album.html" class="album">
+        <img src="imagenes/Mixtape 바보라도 알아.jpg" alt="Mixtape 바보라도 알아">
+        <p>Mixtape 바보라도 알아</p>
+      </a>
+    
+    <a href="album.html" class="album">
+        <img src="imagenes/skz2020.jpg" alt="SKZ-2020">
+        <p>SKZ-2020</p>
+      </a>
+
+    <a href="album.html" class="album">
+        <img src="imagenes/Step Out of Clé.jpg" alt="Step Out of Clé">
+        <p>Step Out of Clé</p>
+      </a>     
+      
+    <a href="album.html" class="album">
+        <img src="imagenes/mixtape gone days.jpg" alt="Mixtape Gone Days">
+        <p>Mixtape Gone Days</p>
+      </a>  
+
+    <a href="album.html" class="album">
+        <img src="imagenes/'Clé LEVANTER.jpg" alt="Clé LEVANTER">
+        <p>Clé LEVANTER</p>
+      </a>
+    
+    <a href="album.html" class="album">
+        <img src="imagenes/Double_Knot.jpg" alt="Double Knot">
+        <p>Double Knot</p>
+      </a>
+
+    <a href="album.html" class="album">
+        <img src="imagenes/clé 2 Yellow_Wood.jpg" alt="Clé 2 : Yellow_Wood">
+        <p>Clé 2 : Yellow_Wood</p>
+      </a>
+
+    <a href="album.html" class="album">
+        <img src="imagenes/clé 1 MIROH.jpg" alt="Clé 1 : MIROH">
+        <p>Clé 1 : MIROH</p>
+      </a>
+
+    <a href="album.html" class="album">
+        <img src="imagenes/I_am_YOU.jpg" alt="I am YOU">
+        <p>I AM YOU</p>
+      </a>
+
+    <a href="album.html" class="album">
+        <img src="imagenes/I_am_WHO.jpg" alt="I am WHO">
+        <p>I AM WHO</p>
+      </a>
+
+    <a href="album.html" class="album">
+        <img src="imagenes/I_am_NOT.jpg" alt="I am NOT">
+        <p>I AM NOT</p>
+      </a>
+
+    <a href="album.html" class="album">
+        <img src="imagenes/Mixtape(1).jpg" alt="Mixtape (1)">
+        <p>Mixtape (1)</p>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- MEMBERS -->
+  <section class="members">
+    <h2>Members</h2>
+    <div class="member">
+
+
+     <a href="Bangchan.html" class="member">
+        <img src="imagenes/chanid.jpg" alt="Bang Chan">
+        <p>Bang Chan</p>
+      </a>
+
+     <a href="LeeKnow.html" class="member">
+        <img src="imagenes/leeid.jpg" alt="Lee Know">
+        <p>Lee Know</p>
+      </a>
+
+     <a href="ChangBin.html" class="member">
+        <img src="imagenes/binid.jpg" alt="Chang Bin">
+        <p>Chang Bin</p>
+      </a>
+
+     <a href="Hyunjin.html" class="member">
+        <img src="imagenes/hyunid.jpg" alt="Hyunjin">
+        <p>Hyunjin</p>
+      </a>
+
+     <a href="Han.html" class="member">
+        <img src="imagenes/hanid.jpg" alt="Han">
+        <p>Han</p>
+      </a>
+
+     <a href="Felix.html" class="member">
+        <img src="imagenes/felixid.jpg" alt="Felix">
+        <p>Felix</p>
+      </a>
+
+     <a href="Seungmin.html" class="member">
+        <img src="imagenes/seungid.jpg" alt="Seungmin">
+        <p>Seungmin</p>
+      </a>
+     <a href="IN.html" class="member">
+        <img src="imagenes/inid.jpg" alt="IN">
+        <p>IN</p>
+      </a>
+    </div>
+
+
 </body>
+
+
+<!-- FOOTER -->
+<footer class="footer">
+  <p>Follow Stray Kids</p>
+  <div class="redes">
+
+    <a href="https://www.instagram.com/realstraykids/" target="_blank" class="red">
+      <img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" alt="Instagram">
+      <span>Instagram</span>
+    </a>
+
+    <a href="https://x.com/Stray_Kids" target="_blank" class="red">
+      <img src="https://cdn-icons-png.flaticon.com/512/5968/5968830.png" alt="X">
+      <span>X</span>
+    </a>
+
+    <a href="https://www.youtube.com/@StrayKids" target="_blank" class="red">
+      <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube">
+      <span>YouTube</span>
+    </a>
+
+  </div>
+  <p class="footer-copy">© Stray Kids — JYP Entertainment</p>
+</footer>
+
+
+
+
 </html>
