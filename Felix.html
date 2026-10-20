@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Felix - Stray Kids</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+  <style>
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      color: #222;
+    }
+
+    .volver {
+      display: inline-block;
+      margin: 20px 40px;
+      text-decoration: none;
+      color: #555;
+      font-size: 1rem;
+    }
+
+    .volver:hover { color: black; }
+
+    /* GALERÍA DE FOTOS */
+    .galeria {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      padding: 40px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* COLUMNAS LATERALES */
+    .galeria-lateral {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .galeria-lateral img {
+      width: 220px;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      cursor: pointer;
+      transition: transform 0.2s, opacity 0.2s;
+    }
+
+    .galeria-lateral img:hover {
+      transform: scale(1.03);
+      opacity: 0.9;
+    }
+
+    /* FOTO CENTRAL */
+    .galeria-centro img {
+      width: 280px;
+      height: 380px;
+      object-fit: cover;
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .galeria-centro img:hover {
+      transform: scale(1.02);
+    }
+
+    /* ABOUT HIM */
+    .about {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 60px 40px;
+      border-top: 1px solid #ddd;
+    }
+
+    .about h2 {
+      font-family: "Bebas Neue", sans-serif;
+      font-size: 2.5rem;
+      margin-bottom: 30px;
+    }
+
+    .about-info {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+
+    .dato {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+
+    .dato h3 {
+      font-family: "Bebas Neue", sans-serif;
+      font-size: 1rem;
+      color: #aaa;
+      letter-spacing: 1px;
+      margin-bottom: 6px;
+    }
+
+    .dato p {
+      font-size: 1rem;
+      color: #222;
+      font-weight: bold;
+    }
+
+
+    /* LIGHTBOX */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.9);
+      z-index: 999;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .lightbox.activo { display: flex; }
+
+    .lightbox img {
+      max-width: 90%;
+      max-height: 90vh;
+      border-radius: 12px;
+    }
+
+    .lightbox-cerrar {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      font-size: 2.5rem;
+      color: white;
+      cursor: pointer;
+    }
+
+    .lightbox-cerrar:hover { color: #aaa; }
+
+    .about-layout {
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+  align-items: flex-start;
+}
+
+    .about-izq {
+    flex: 1;
+    }
+
+    .about-der img {
+    width: 250px;
+    height: 350px;
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+    }
+
+  </style>
+</head>
+<body>
+
+  <a href="index.html" class="volver">← Back</a>
+
+  <!-- GALERÍA -->
+  <div class="galeria">
+
+    <!-- 3 fotos izquierda -->
+    <div class="galeria-lateral">
+      <img src="imagenes/felix55.jpg" alt="Felix" onclick="abrirFoto(this.src)">
+      <img src="imagenes/felix2.jpg" alt="Felix" onclick="abrirFoto(this.src)">
+      <img src="imagenes/felix3.jpg" alt="Felix" onclick="abrirFoto(this.src)">
+    </div>
+
+    <!-- foto central -->
+    <div class="galeria-centro">
+      <img src="imagenes/felix1.jpg" alt="Felix" onclick="abrirFoto(this.src)">
+    </div>
+
+    <!-- 3 fotos derecha -->
+    <div class="galeria-lateral">
+      <img src="imagenes/felix4.jpg" alt="Felix" onclick="abrirFoto(this.src)">
+      <img src="imagenes/felix6.jpg" alt="Felix" onclick="abrirFoto(this.src)">
+      <img src="imagenes/felix7.jpg" alt="Felix" onclick="abrirFoto(this.src)">
+    </div>
+
+  </div>
+
+<!-- ABOUT HIM -->
+<div class="about">
+  <h2>About Him</h2>
+
+  <div class="about-layout">
+
+
+    <div class="about-der">
+    <img src="imagenes/felix0.jpg" alt="Felix">
+    </div>
+
+    <!-- Izquierda: info -->
+    <div class="about-izq">
+      <div class="about-info">
+        <div class="dato">
+          <h3>Felix</h3>
+          <p>Lee Felix Yong-bok</p>
+        </div>
+        <div class="dato">
+          <h3>Birthday</h3>
+          <p>Sep. 15-2000</p>
+        </div>
+        <div class="dato">
+          <h3>Nationality</h3>
+          <p>Australian</p>
+        </div>
+        <div class="dato">
+          <h3>Position</h3>
+          <p>Dancer, rapper, visual </p>
+            </p>
+        </div>
+      </div>
+
+    </div>
+
+
+  </div>
+</div>
+
+  </div>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox" onclick="cerrarFoto()">
+    <span class="lightbox-cerrar" onclick="cerrarFoto()">✕</span>
+    <img id="lightbox-img" src="" alt="foto ampliada">
+  </div>
+
+  <script>
+    function abrirFoto(src) {
+      document.getElementById('lightbox-img').src = src;
+      document.getElementById('lightbox').classList.add('activo');
+    }
+
+    function cerrarFoto() {
+      document.getElementById('lightbox').classList.remove('activo');
+    }
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') cerrarFoto();
+    });
+  </script>
+
+</body>
+</html>

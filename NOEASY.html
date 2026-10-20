@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NOEASY - Stray Kids</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+  <style>
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      color: #222;
+    }
+
+    .volver {
+      display: inline-block;
+      margin: 20px 40px;
+      text-decoration: none;
+      color: #555;
+      font-size: 1rem;
+    }
+
+    .volver:hover {
+      color: black;
+    }
+
+    .album-main {
+      display: flex;
+      flex-direction: row;
+      gap: 60px;
+      padding: 40px;
+      max-width: 1100px;
+      margin: 0 auto;
+      align-items: flex-start;
+    }
+
+    .portada img {
+      width: 300px;
+      height: 300px;
+      object-fit: cover;
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+    }
+
+    .portada h1 {
+      font-family: "Bebas Neue", sans-serif;
+      font-size: 2.5rem;
+      margin-top: 16px;
+    }
+
+    .portada p {
+      color: #777;
+      margin-top: 6px;
+    }
+
+    .canciones {
+      flex: 1;
+    }
+
+    .canciones h2 {
+      font-family: "Bebas Neue", sans-serif;
+      font-size: 1.8rem;
+      margin-bottom: 16px;
+    }
+
+    .cancion {
+      padding: 12px 16px;
+      border-bottom: 1px solid #ddd;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      transition: background 0.2s;
+    }
+
+    .cancion:hover {
+      background-color: #eee;
+      border-radius: 8px;
+    }
+
+    .cancion-numero {
+      color: #aaa;
+      font-size: 0.9rem;
+      width: 20px;
+    }
+
+    .cancion-titulo {
+      font-size: 1rem;
+      font-weight: bold;
+    }
+
+    .letra-panel {
+      display: none;
+      max-width: 1100px;
+      margin: 20px auto;
+      padding: 40px;
+      background: white;
+      border-radius: 12px;
+    }
+
+    .letra-panel.activo {
+      display: block;
+    }
+
+    .letra-panel h3 {
+      font-family: "Bebas Neue", sans-serif;
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+    }
+
+    .spotify {
+      margin-bottom: 24px;
+    }
+
+    .info-general {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 40px;
+      border-top: 1px solid #ddd;
+    }
+
+    .info-general h2 {
+      font-family: "Bebas Neue", sans-serif;
+      font-size: 1.8rem;
+      margin-bottom: 16px;
+    }
+
+    .info-general p {
+      line-height: 1.8;
+      color: #444;
+    }
+
+    .photobook {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 40px;
+      border-top: 1px solid #ddd;
+    }
+
+    .photobook h2 {
+      font-family: "Bebas Neue", sans-serif;
+      font-size: 1.8rem;
+      margin-bottom: 24px;
+    }
+
+    .fotos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 12px;
+    }
+
+    .fotos-grid img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: transform 0.2s, opacity 0.2s;
+    }
+
+    .fotos-grid img:hover {
+      transform: scale(1.03);
+      opacity: 0.9;
+    }
+
+    .lightbox {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.9);
+        z-index: 999;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .lightbox.activo {
+        display: flex;
+    }
+
+    .lightbox img {
+        max-width: 90%;
+        max-height: 90vh;
+        border-radius: 12px;
+        box-shadow: 0 0 40px rgba(0,0,0,0.5);
+    }
+
+    .lightbox-cerrar {
+        position: absolute;
+        top: 20px;
+        right: 30px;
+        font-size: 2.5rem;
+        color: white;
+        cursor: pointer;
+        line-height: 1;
+    }
+
+    .lightbox-cerrar:hover {
+    color: #aaa;
+    }
+
+
+
+</style>
+</head>
+<body>
+
+  <a href="index.html" class="volver">← Back</a>
+
+  <div class="album-main">
+    <div class="portada">
+      <img src="imagenes/noeasy.jpg" alt="NOEASY">
+      <h1>NOEASY</h1>
+      <p>Release: 23/08/2021</p>
+    </div>
+
+    <div class="canciones">
+      <h2>Track List</h2>
+
+      <div class="cancion" onclick="mostrarCancion('cancion1')">
+        <span class="cancion-numero">01</span>
+        <span class="cancion-titulo">Cheese</span>
+      </div>
+
+      <div class="cancion" onclick="mostrarCancion('cancion2')">
+        <span class="cancion-numero">02</span>
+        <span class="cancion-titulo">Thunderous (소리꾼)</span>
+      </div>
+
+      <div class="cancion" onclick="mostrarCancion('cancion3')">
+        <span class="cancion-numero">03</span>
+        <span class="cancion-titulo">Domino</span>
+      </div>
+
+      <div class="cancion" onclick="mostrarCancion('cancion4')">
+        <span class="cancion-numero">04</span>
+        <span class="cancion-titulo">Ssick (씩)</span>
+      </div>
+
+
+      <div class="cancion" onclick="mostrarCancion('cancion5')">
+        <span class="cancion-numero">05</span>
+        <span class="cancion-titulo">The View</span>
+      </div>
+
+
+
+      <div class="cancion" onclick="mostrarCancion('cancion6')">
+        <span class="cancion-numero">06</span>
+        <span class="cancion-titulo">Sorry, I Love You (좋아해서 미안)</span>
+      </div>
+
+
+
+      <div class="cancion" onclick="mostrarCancion('cancion7')">
+        <span class="cancion-numero">07</span>
+        <span class="cancion-titulo">Silent Cry</span>
+      </div>
+
+
+
+
+      <div class="cancion" onclick="mostrarCancion('cancion8')">
+        <span class="cancion-numero">08</span>
+        <span class="cancion-titulo">Secret Secret (말할 수 없는 비밀)</span>
+      </div>
+
+
+      <div class="cancion" onclick="mostrarCancion('cancion9')">
+        <span class="cancion-numero">09</span>
+        <span class="cancion-titulo">Star Lost</span>
+      </div>
+
+
+
+
+      <div class="cancion" onclick="mostrarCancion('cancion10')">
+        <span class="cancion-numero">10</span>
+        <span class="cancion-titulo">Red Lights (강박) (Bang Chan & Hyunjin duet) </span>
+      </div>
+
+
+
+
+      <div class="cancion" onclick="mostrarCancion('cancion11')">
+        <span class="cancion-numero">11</span>
+        <span class="cancion-titulo">Surfin (Lee Know, Changbin & Felix) </span>
+      </div>
+
+
+
+
+      <div class="cancion" onclick="mostrarCancion('cancion12')">
+        <span class="cancion-numero">12</span>
+        <span class="cancion-titulo">Gone Away (HAN, Seungmin & I.N) </span>
+      </div>
+
+
+
+      <div class="cancion" onclick="mostrarCancion('cancion12')">
+        <span class="cancion-numero">13</span>
+        <span class="cancion-titulo">Wolfgang</span>
+      </div>
+
+
+
+
+      <div class="cancion" onclick="mostrarCancion('cancion14')">
+        <span class="cancion-numero">14</span>
+        <span class="cancion-titulo">Mixtape : Oh (애)</span>
+      </div>
+
+
+
+
+
+
+
+
+
+    </div>
+  </div>
+
+  <div class="letra-panel" id="cancion1">
+    <h3>Cheese</h3>
+    <div class="spotify">
+      <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/7qpSatdWQcRHA3hpedL2u4" width="100%" height="80" frameborder="0" allowtransparency="true" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+    </div>
+  </div>
+
+  <div class="letra-panel" id="cancion2">
+    <h3>Thunderous</h3>
+    <div class="spotify">
+      <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/0nwTMzpatarzvLvtwwzdCt" width="100%" height="80" frameborder="0" allowtransparency="true" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+    </div>
+  </div>
+
+  <div class="letra-panel" id="cancion3">
+    <h3>Domino</h3>
+    <div class="spotify">
+      <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/6Ib6RkvLBMD85bov85apSL" width="100%" height="80" frameborder="0" allowtransparency="true" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+    </div>
+  </div>
+
+  <div class="letra-panel" id="cancion4">
+    <h3>Ssick (씩)</h3>
+    <div class="spotify">
+      <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/238HdxvQkmYeSyo6qkPQoU" width="100%" height="80" frameborder="0" allowtransparency="true" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+    </div>
+  </div>
+
+
+  <div class="letra-panel" id="cancion5">
+    <h3>The View</h3>
+    <div class="spotify">
+      <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/5FM1V3qjHroqsXRBbL57rW" width="100%" height="80" frameborder="0" allowtransparency="true" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+    </div>
+  </div>
+
+  <div class="letra-panel" id="cancion6">
+    <h3>Sorry, I Love You (좋아해서 미안)</h3>
+    <div class="spotify">
+      <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/5kkOHHTccylnkYxDRgDWMs" width="100%" height="80" frameborder="0" allowtransparency="true" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+    </div>
+  </div>
+
+
+  <div class="letra-panel" id="cancion7">
+    <h3>Silent Cry</h3>
+    <div class="spotify">
+      <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/5kBJH5gU89axZDauhfddpy" width="100%" height="80" frameborder="0" allowtransparency="true" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+    </div>
+  </div>
+
+
+  <div class="letra-panel" id="cancion8">
+    <h3>Secret Secret (말할 수 없는 비밀)</h3>
+    <div class="spotify">
+      <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/1pLJ9T4v4p68otzCDonbc6" width="100%" height="80" frameborder="0" allowtransparency="true" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+    </div>
+  </div>
+
+
+
+  <div class="letra-panel" id="cancion9">
+    <h3>Star Lost</h3>
+    <div class="spotify">
+      <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/1LSHzXAZXQH9R1zSEFF8Hz" width="100%" height="80" frameborder="0" allowtransparency="true" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+    </div>
+  </div>
+
+  <div class="letra-panel" id="cancion10">
+    <h3>Red Lights (강박) (Bang Chan & Hyunjin duet) </h3>
+    <div class="spotify">
+      <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/0LatE4S9UtCDwIdGQsFFKL" width="100%" height="80" frameborder="0" allowtransparency="true" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+    </div>
+  </div>
+
+
+
+  <div class="letra-panel" id="cancion11">
+    <h3>Surfin (Lee Know, Changbin & Felix)</h3>
+    <div class="spotify">
+      <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/1FdnsU6An1Ye3uBJe8j23c" width="100%" height="80" frameborder="0" allowtransparency="true" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+    </div>
+  </div>
+
+
+
+  <div class="letra-panel" id="cancion12">
+    <h3>Gone Away (HAN, Seungmin & I.N)</h3>
+    <div class="spotify">
+      <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/6l8YJbgWzvh05e3Bnfw9lw" width="100%" height="80" frameborder="0" allowtransparency="true" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+    </div>
+  </div>
+
+
+  <div class="letra-panel" id="cancion13">
+    <h3>Wolfgang</h3>
+    <div class="spotify">
+      <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/0aWEt5aMfU2zYxE1tg2efw" width="100%" height="80" frameborder="0" allowtransparency="true" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+    </div>
+  </div>
+
+
+  <div class="letra-panel" id="cancion14">
+    <h3>Mixtape : Oh (애)</h3>
+    <div class="spotify">
+      <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/2afx8zfrOsN3QVEWSx5IPp" width="100%" height="80" frameborder="0" allowtransparency="true" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+    </div>
+  </div>
+
+
+
+
+
+
+  <!-- INFO GENERAL -->
+  <div class="info-general">
+    <h2>About this album</h2>
+    <p>Noeasy (stylized as NOEASY) is the second full-length album by Stray Kids. It was released on August 23, 2021 with "Thunderous" serving as the album's title track. "The View" and "Domino" were also used as their follow up tracks.</p>
+  </div>
+
+  <!-- PHOTOBOOK -->
+  <div class="photobook">
+    <h2>Photobook</h2>
+    <div class="fotos-grid">
+      <img src="imagenes/no1.jpg" alt="foto 1" onclick="abrirFoto(this.src)">
+      <img src="imagenes/no2.jpg" alt="I.N" onclick="abrirFoto(this.src)">
+      <img src="imagenes/no3.jpg" alt="Seungmin" onclick="abrirFoto(this.src)">
+      <img src="imagenes/no4.jpg" alt="Felix" onclick="abrirFoto(this.src)">
+      <img src="imagenes/no5.jpg" alt="Han" onclick="abrirFoto(this.src)">
+      <img src="imagenes/no7.jpg" alt="Hyunjin" onclick="abrirFoto(this.src)">
+      <img src="imagenes/no8.jpg" alt="Changbin" onclick="abrirFoto(this.src)">
+      <img src="imagenes/no9.jpg" alt="Leeknow" onclick="abrirFoto(this.src)">
+    </div>
+  </div>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox" onclick="cerrarFoto()">
+    <span class="lightbox-cerrar" onclick="cerrarFoto()">✕</span>
+    <img id="lightbox-img" src="" alt="foto ampliada">
+  </div>
+
+  <script>
+    function mostrarCancion(id) {
+      document.querySelectorAll('.letra-panel').forEach(panel => {
+        panel.classList.remove('activo');
+      });
+      document.getElementById(id).classList.add('activo');
+      document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function abrirFoto(src) {
+      document.getElementById('lightbox-img').src = src;
+      document.getElementById('lightbox').classList.add('activo');
+    }
+
+    function cerrarFoto() {
+      document.getElementById('lightbox').classList.remove('activo');
+    }
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') cerrarFoto();
+    });
+  </script>
+
+</body>
+</html>

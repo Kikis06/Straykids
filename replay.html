@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SKZ-REPLAY - Stray Kids</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+  <style>
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      color: #222;
+    }
+
+    .volver {
+      display: inline-block;
+      margin: 20px 40px;
+      text-decoration: none;
+      color: #555;
+      font-size: 1rem;
+    }
+
+    .volver:hover {
+      color: black;
+    }
+
+    .album-main {
+      display: flex;
+      flex-direction: row;
+      gap: 60px;
+      padding: 40px;
+      max-width: 1100px;
+      margin: 0 auto;
+      align-items: flex-start;
+    }
+
+    .portada img {
+      width: 300px;
+      height: 300px;
+      object-fit: cover;
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+    }
+
+    .portada h1 {
+      font-family: "Bebas Neue", sans-serif;
+      font-size: 2.5rem;
+      margin-top: 16px;
+    }
+
+    .portada p {
+      color: #777;
+      margin-top: 6px;
+    }
+
+    .canciones {
+      flex: 1;
+    }
+
+    .canciones h2 {
+      font-family: "Bebas Neue", sans-serif;
+      font-size: 1.8rem;
+      margin-bottom: 16px;
+    }
+
+    .cancion {
+      padding: 12px 16px;
+      border-bottom: 1px solid #ddd;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      transition: background 0.2s;
+    }
+
+    .cancion:hover {
+      background-color: #eee;
+      border-radius: 8px;
+    }
+
+    .cancion-numero {
+      color: #aaa;
+      font-size: 0.9rem;
+      width: 20px;
+    }
+
+    .cancion-titulo {
+      font-size: 1rem;
+      font-weight: bold;
+    }
+
+    .letra-panel {
+      display: none;
+      max-width: 1100px;
+      margin: 20px auto;
+      padding: 40px;
+      background: white;
+      border-radius: 12px;
+    }
+
+    .letra-panel.activo {
+      display: block;
+    }
+
+    .letra-panel h3 {
+      font-family: "Bebas Neue", sans-serif;
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+    }
+
+    .spotify {
+      margin-bottom: 24px;
+    }
+
+    .info-general {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 40px;
+      border-top: 1px solid #ddd;
+    }
+
+    .info-general h2 {
+      font-family: "Bebas Neue", sans-serif;
+      font-size: 1.8rem;
+      margin-bottom: 16px;
+    }
+
+    .info-general p {
+      line-height: 1.8;
+      color: #444;
+    }
+
+    .photobook {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 40px;
+      border-top: 1px solid #ddd;
+    }
+
+    .photobook h2 {
+      font-family: "Bebas Neue", sans-serif;
+      font-size: 1.8rem;
+      margin-bottom: 24px;
+    }
+
+    .fotos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 12px;
+    }
+
+    .fotos-grid img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: transform 0.2s, opacity 0.2s;
+    }
+
+    .fotos-grid img:hover {
+      transform: scale(1.03);
+      opacity: 0.9;
+    }
+
+    .lightbox {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.9);
+        z-index: 999;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .lightbox.activo {
+        display: flex;
+    }
+
+    .lightbox img {
+        max-width: 90%;
+        max-height: 90vh;
+        border-radius: 12px;
+        box-shadow: 0 0 40px rgba(0,0,0,0.5);
+    }
+
+    .lightbox-cerrar {
+        position: absolute;
+        top: 20px;
+        right: 30px;
+        font-size: 2.5rem;
+        color: white;
+        cursor: pointer;
+        line-height: 1;
+    }
+
+    .lightbox-cerrar:hover {
+    color: #aaa;
+    }
+
+
+
+</style>
+</head>
+<body>
+
+  <a href="index.html" class="volver">← Back</a>
+
+  <div class="album-main">
+    <div class="portada">
+      <img src="imagenes/SKZ-REPLAY.jpg" alt="SKZ-REPLAY">
+      <h1>SKZ-REPLAY</h1>
+      <p>Release: 02/06/2023</p>
+    </div>
+
+    <div class="canciones">
+      <h2>Track List</h2>
+
+      <div class="cancion" onclick="mostrarCancion('cancion1')">
+        <span class="cancion-numero">01</span>
+        <span class="cancion-titulo">FAM (Korean ver.) </span>
+      </div>
+
+      <div class="cancion" onclick="mostrarCancion('cancion2')">
+        <span class="cancion-numero">02</span>
+        <span class="cancion-titulo">Connected</span>
+      </div>
+
+      <div class="cancion" onclick="mostrarCancion('cancion3')">
+        <span class="cancion-numero">03</span>
+        <span class="cancion-titulo">나지막이 Limbo</span>
+      </div>
+
+      <div class="cancion" onclick="mostrarCancion('cancion4')">
+        <span class="cancion-numero">04</span>
+        <span class="cancion-titulo">DOODLE </span>
+      </div>
+
+      <div class="cancion" onclick="mostrarCancion('cancion5')">
+        <span class="cancion-numero">05</span>
+        <span class="cancion-titulo">Love Untold </span>
+      </div>
+
+      <div class="cancion" onclick="mostrarCancion('cancion6')">
+        <span class="cancion-numero">06</span>
+        <span class="cancion-titulo">RUN</span>
+      </div>
+
+      <div class="cancion" onclick="mostrarCancion('cancion7')">
+        <span class="cancion-numero">07</span>
+        <span class="cancion-titulo">Deep end</span>
+      </div>
+
+      <div class="cancion" onclick="mostrarCancion('cancion8')">
+        <span class="cancion-numero">08</span>
+        <span class="cancion-titulo">내려요 Stars and Raindrops</span>
+      </div>
+
+      <div class="cancion" onclick="mostrarCancion('cancion9')">
+        <span class="cancion-numero">09</span>
+        <span class="cancion-titulo">안아줄게요 Hug Me </span>
+      </div>
+
+      <div class="cancion" onclick="mostrarCancion('cancion10')">
+        <span class="cancion-numero">10</span>
+        <span class="cancion-titulo">#LoveSTAY</span>
+      </div>
+
+      <div class="cancion" onclick="mostrarCancion('cancion11')">
+        <span class="cancion-numero">11</span>
+        <span class="cancion-titulo">ZONE</span>
+      </div>
+
+
+      <div class="cancion" onclick="mostrarCancion('cancion12')">
+        <span class="cancion-numero">12</span>
+        <span class="cancion-titulo">Close</span>
+      </div>
+
+      <div class="cancion" onclick="mostrarCancion('cancion13')">
+        <span class="cancion-numero">13</span>
+        <span class="cancion-titulo">Streetlight (feat. Bang Chan) </span>
+      </div>
+
+      <div class="cancion" onclick="mostrarCancion('cancion14')">
+        <span class="cancion-numero">14</span>
+        <span class="cancion-titulo">인정하기 싫어 i hate to admit </span>
+      </div>
+
+      <div class="cancion" onclick="mostrarCancion('cancion15')">
+        <span class="cancion-numero">15</span>
+        <span class="cancion-titulo">I GOT IT</span>
+      </div>
+
+      <div class="cancion" onclick="mostrarCancion('cancion16')">
+        <span class="cancion-numero">16</span>
+        <span class="cancion-titulo">꼬마별 miss you</span>
+      </div>
+
+
+      <div class="cancion" onclick="mostrarCancion('cancion17')">
+        <span class="cancion-numero">17</span>
+        <span class="cancion-titulo">막내온탑 Maknae On Top</span>
+      </div>
+
+      <div class="cancion" onclick="mostrarCancion('cancion18')">
+        <span class="cancion-numero">18</span>
+        <span class="cancion-titulo">외계인 Alien</span>
+      </div>
+
+      <div class="cancion" onclick="mostrarCancion('cancion19')">
+        <span class="cancion-numero">19</span>
+        <span class="cancion-titulo">좋으니까 Because </span>
+      </div>
+
+
+      <div class="cancion" onclick="mostrarCancion('cancion20')">
+        <span class="cancion-numero">20</span>
+        <span class="cancion-titulo">조각 Piece of a Puzzle</span>
+      </div>
+
+      <div class="cancion" onclick="mostrarCancion('cancion21')">
+        <span class="cancion-numero">21</span>
+        <span class="cancion-titulo">Wish You Back</span>
+      </div>
+
+      <div class="cancion" onclick="mostrarCancion('cancion22')">
+        <span class="cancion-numero">22</span>
+        <span class="cancion-titulo">HaPpY</span>
+      </div>
+
+
+      <div class="cancion" onclick="mostrarCancion('cancion23')">
+        <span class="cancion-numero">23</span>
+        <span class="cancion-titulo">오늘 밤 나는 불을 켜 Up All Night</span>
+      </div>
+
+
+      <div class="cancion" onclick="mostrarCancion('cancion24')">
+        <span class="cancion-numero">24</span>
+        <span class="cancion-titulo">Drive </span>
+      </div>
+
+
+      <div class="cancion" onclick="mostrarCancion('cancion25')">
+        <span class="cancion-numero">25</span>
+        <span class="cancion-titulo">ice.cream</span>
+      </div>
+
+
+
+
+    </div>
+  </div>
+
+  <div class="letra-panel" id="cancion1">
+    <h3>FAM (Korean Version)</h3>
+    <div class="spotify">
+      <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/11BLMmPoTgKEi4XBDxdpYN" width="100%" height="80" frameborder="0" allowtransparency="true" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+    </div>
+  </div>
+
+  <div class="letra-panel" id="cancion2">
+    <h3>Connected</h3>
+    <div class="spotify">
+      <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/3vGSv4l4czTve9jZoYeIWk" width="100%" height="80" frameborder="0" allowtransparency="true" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+    </div>
+  </div>
+
+  <div class="letra-panel" id="cancion3">
+    <h3>나지막이 Limbo </h3>
+    <div class="spotify">
+      <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/0nuXhivBOFDiriWCpdyU93" width="100%" height="80" frameborder="0" allowtransparency="true" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+    </div>
+  </div>
+
+  <div class="letra-panel" id="cancion4">
+    <h3>DOODLE</h3>
+    <div class="spotify">
+      <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/786A4mxiKmPGHA7z7dPA9K" width="100%" height="80" frameborder="0" allowtransparency="true" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+    </div>
+  </div>
+
+  <div class="letra-panel" id="cancion5">
+    <h3>Love Untold</h3>
+    <div class="spotify">
+      <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/1SrsEuRiRoopW2pZDaHgVA" width="100%" height="80" frameborder="0" allowtransparency="true" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+    </div>
+  </div>
+
+  <div class="letra-panel" id="cancion6">
+    <h3>RUN </h3>
+    <div class="spotify">
+      <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/4jjaOnFqtAyiYmP7PdTJbO" width="100%" height="80" frameborder="0" allowtransparency="true" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+    </div>
+  </div>
+
+  <div class="letra-panel" id="cancion7">
+    <h3>Deep end</h3>
+    <div class="spotify">
+      <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/3VMeAc0SlgLaS9RzA8TSxH" width="100%" height="80" frameborder="0" allowtransparency="true" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+    </div>
+  </div>
+
+  <div class="letra-panel" id="cancion8">
+    <h3>내려요 Stars and Raindrops</h3>
+    <div class="spotify">
+      <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/5kFGqKqHzVVMMI7V7uoID1" width="100%" height="80" frameborder="0" allowtransparency="true" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+    </div>
+  </div>
+
+  <div class="letra-panel" id="cancion9">
+    <h3>안아줄게요 Hug Me</h3>
+    <div class="spotify">
+      <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/5gXUFmE5AKFiInKyHVVEnL" width="100%" height="80" frameborder="0" allowtransparency="true" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+    </div>
+  </div>
+
+  <div class="letra-panel" id="cancion10">
+    <h3>#LoveSTAY</h3>
+    <div class="spotify">
+      <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/44dZ49nRlFPSmX6A80rKB1" width="100%" height="80" frameborder="0" allowtransparency="true" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+    </div>
+  </div>
+
+
+  <div class="letra-panel" id="cancion11">
+    <h3>ZONE</h3>
+    <div class="spotify">
+      <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/56ZpFy1kLsXwtbHWX1CgJ4" width="100%" height="80" frameborder="0" allowtransparency="true" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+    </div>
+  </div>
+
+
+  <div class="letra-panel" id="cancion12">
+    <h3>Close</h3>
+    <div class="spotify">
+      <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/7jcpg7osgYWffx9LmLEoZ4" width="100%" height="80" frameborder="0" allowtransparency="true" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+    </div>
+  </div>
+
+  <div class="letra-panel" id="cancion13">
+    <h3>Streetlight (feat. Bang Chan) </h3>
+    <div class="spotify">
+      <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/1Z6NmeYIfN4e8TuEYLFTKL" width="100%" height="80" frameborder="0" allowtransparency="true" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+    </div>
+  </div>
+
+  <div class="letra-panel" id="cancion14">
+    <h3>인정하기 싫어 i hate to admit</h3>
+    <div class="spotify">
+      <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/0XABJLloqjHsF4mY4tGIOH" width="100%" height="80" frameborder="0" allowtransparency="true" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+    </div>
+  </div>
+
+  <div class="letra-panel" id="cancion15">
+    <h3>I GOT IT</h3>
+    <div class="spotify">
+      <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/4atsZkGtoHHPugKK5wzAE1" width="100%" height="80" frameborder="0" allowtransparency="true" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+    </div>
+  </div>
+
+
+  <div class="letra-panel" id="cancion16">
+    <h3>꼬마별 miss you</h3>
+    <div class="spotify">
+      <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/1BwFLLe233S6HR1ravS3yi" width="100%" height="80" frameborder="0" allowtransparency="true" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+    </div>
+  </div>
+
+
+
+  <div class="letra-panel" id="cancion17">
+    <h3>막내온탑 Maknae On Top</h3>
+    <div class="spotify">
+      <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/1J0qupz0gVGSB5jcRY35tL" width="100%" height="80" frameborder="0" allowtransparency="true" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+    </div>
+  </div>
+
+
+
+  <div class="letra-panel" id="cancion18">
+    <h3>외계인 Alien</h3>
+    <div class="spotify">
+      <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/3czfvJgfEDfBT5OKA5qAU5" width="100%" height="80" frameborder="0" allowtransparency="true" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+    </div>
+  </div>
+
+
+
+  <div class="letra-panel" id="cancion19">
+    <h3>좋으니까 Because</h3>
+    <div class="spotify">
+      <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/1Iu7bqGwYVB6OGq4uLt2ak" width="100%" height="80" frameborder="0" allowtransparency="true" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+    </div>
+  </div>
+
+
+
+  <div class="letra-panel" id="cancion20">
+    <h3>조각 Piece of a Puzzle</h3>
+    <div class="spotify">
+      <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/56uBQujWiOiFMFg1R3TZUJ" width="100%" height="80" frameborder="0" allowtransparency="true" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+    </div>
+  </div>
+
+
+  <div class="letra-panel" id="cancion21">
+    <h3>Wish You Back</h3>
+    <div class="spotify">
+      <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/1ifB8sqR8gd09DSEloo4Du" width="100%" height="80" frameborder="0" allowtransparency="true" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+    </div>
+  </div>
+
+
+  <div class="letra-panel" id="cancion22">
+    <h3>HaPpY</h3>
+    <div class="spotify">
+      <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/2KHgPAJycXwbZ2S1xuUT9T" width="100%" height="80" frameborder="0" allowtransparency="true" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+    </div>
+  </div>
+
+
+
+  <div class="letra-panel" id="cancion23">
+    <h3>오늘 밤 나는 불을 켜 Up All Night</h3>
+    <div class="spotify">
+      <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/0bxB5Jie9fGKTIibfYVfei" width="100%" height="80" frameborder="0" allowtransparency="true" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+    </div>
+  </div>
+
+
+
+  <div class="letra-panel" id="cancion24">
+    <h3>Drive </h3>
+    <div class="spotify">
+      <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/0hLvtmoexLKl14LrzxOYRt" width="100%" height="80" frameborder="0" allowtransparency="true" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+    </div>
+  </div>
+
+
+
+  <div class="letra-panel" id="cancion25">
+    <h3>ice.cream</h3>
+    <div class="spotify">
+      <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/07x9Jr01lqjlFycZsfKBae" width="100%" height="80" frameborder="0" allowtransparency="true" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+    </div>
+  </div>
+
+
+
+
+  <!-- INFO GENERAL -->
+  <div class="info-general">
+    <h2>About this album</h2>
+    <p>SKZ-REPLAY is a digital best album by South Korean boy group Stray Kids. It was released on December 21, 2022 with "FAM (Korean ver.)" serving as the title track.
+        It is a compilation bringing songs from SKZ-PLAYER and SKZ-RECORD onto official streaming platforms.</p>
+  </div>
+
+
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox" onclick="cerrarFoto()">
+    <span class="lightbox-cerrar" onclick="cerrarFoto()">✕</span>
+    <img id="lightbox-img" src="" alt="foto ampliada">
+  </div>
+
+  <script>
+    function mostrarCancion(id) {
+      document.querySelectorAll('.letra-panel').forEach(panel => {
+        panel.classList.remove('activo');
+      });
+      document.getElementById(id).classList.add('activo');
+      document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function abrirFoto(src) {
+      document.getElementById('lightbox-img').src = src;
+      document.getElementById('lightbox').classList.add('activo');
+    }
+
+    function cerrarFoto() {
+      document.getElementById('lightbox').classList.remove('activo');
+    }
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') cerrarFoto();
+    });
+  </script>
+
+</body>
+</html>

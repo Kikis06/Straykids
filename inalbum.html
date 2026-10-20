@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IN LIFE - Stray Kids</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+  <style>
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      color: #222;
+    }
+
+    .volver {
+      display: inline-block;
+      margin: 20px 40px;
+      text-decoration: none;
+      color: #555;
+      font-size: 1rem;
+    }
+
+    .volver:hover {
+      color: black;
+    }
+
+    .album-main {
+      display: flex;
+      flex-direction: row;
+      gap: 60px;
+      padding: 40px;
+      max-width: 1100px;
+      margin: 0 auto;
+      align-items: flex-start;
+    }
+
+    .portada img {
+      width: 300px;
+      height: 300px;
+      object-fit: cover;
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+    }
+
+    .portada h1 {
+      font-family: "Bebas Neue", sans-serif;
+      font-size: 2.5rem;
+      margin-top: 16px;
+    }
+
+    .portada p {
+      color: #777;
+      margin-top: 6px;
+    }
+
+    .canciones {
+      flex: 1;
+    }
+
+    .canciones h2 {
+      font-family: "Bebas Neue", sans-serif;
+      font-size: 1.8rem;
+      margin-bottom: 16px;
+    }
+
+    .cancion {
+      padding: 12px 16px;
+      border-bottom: 1px solid #ddd;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      transition: background 0.2s;
+    }
+
+    .cancion:hover {
+      background-color: #eee;
+      border-radius: 8px;
+    }
+
+    .cancion-numero {
+      color: #aaa;
+      font-size: 0.9rem;
+      width: 20px;
+    }
+
+    .cancion-titulo {
+      font-size: 1rem;
+      font-weight: bold;
+    }
+
+    /* PANEL DE CANCIÓN */
+    .letra-panel {
+      display: none;
+      max-width: 1100px;
+      margin: 20px auto;
+      padding: 40px;
+      background: white;
+      border-radius: 12px;
+    }
+
+    .letra-panel.activo {
+      display: block;
+    }
+
+    .letra-panel h3 {
+      font-family: "Bebas Neue", sans-serif;
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+    }
+
+    .spotify {
+      margin-bottom: 24px;
+    }
+
+
+    .info-general {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 40px;
+      border-top: 1px solid #ddd;
+    }
+
+    .info-general h2 {
+      font-family: "Bebas Neue", sans-serif;
+      font-size: 1.8rem;
+      margin-bottom: 16px;
+    }
+
+    .info-general p {
+      line-height: 1.8;
+      color: #444;
+    }
+
+/* PHOTOBOOK */
+.photobook {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 40px;
+  border-top: 1px solid #ddd;
+}
+
+.photobook h2 {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 1.8rem;
+  margin-bottom: 24px;
+}
+
+.fotos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 12px;
+}
+
+.fotos-grid img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.2s, opacity 0.2s;
+}
+
+.fotos-grid img:hover {
+  transform: scale(1.03);
+  opacity: 0.9;
+}
+
+/* LIGHTBOX */
+.lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.9);
+  z-index: 999;
+  justify-content: center;
+  align-items: center;
+}
+
+.lightbox.activo {
+  display: flex;
+}
+
+.lightbox img {
+  max-width: 90%;
+  max-height: 90vh;
+  border-radius: 12px;
+  box-shadow: 0 0 40px rgba(0,0,0,0.5);
+}
+
+.lightbox-cerrar {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 2.5rem;
+  color: white;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.lightbox-cerrar:hover {
+  color: #aaa;
+}
+
+
+
+
+  </style>
+</head>
+<body>
+
+  <!-- BOTÓN VOLVER -->
+  <a href="index.html" class="volver">← Back</a>
+
+  <!-- PORTADA + CANCIONES -->
+  <div class="album-main">
+
+    <!-- Izquierda: portada -->
+    <div class="portada">
+      <img src="imagenes/in.jpg" alt="IN LIFE">
+      <h1>IN LIFE</h1>
+      <p>Release: 14/09/2020</p>
+    </div>
+
+    <!-- Derecha: canciones -->
+    <class="canciones">
+      <h2>Track List</h2>
+
+      <div class="cancion" onclick="mostrarCancion('cancion1')">
+        <span class="cancion-numero">01</span>
+        <span class="cancion-titulo">The Tortoise and the Hare (토끼와 거북이)</span>
+      </div>
+
+      <div class="cancion" onclick="mostrarCancion('cancion2')">
+        <span class="cancion-numero">02</span>
+        <span class="cancion-titulo">Back Door</span>
+      </div>
+
+      <div class="cancion" onclick="mostrarCancion('cancion3')">
+        <span class="cancion-numero">03</span>
+        <span class="cancion-titulo">B Me</span>
+      </div>
+
+      <div class="cancion" onclick="mostrarCancion('cancion4')">
+        <span class="cancion-numero">04</span>
+        <span class="cancion-titulo">Any (아니)</span>
+      </div>
+
+      <div class="cancion" onclick="mostrarCancion('cancion5')">
+        <span class="cancion-numero">05</span>
+        <span class="cancion-titulo">Ex (미친 놈)</span>
+      </div>
+
+      <div class="cancion" onclick="mostrarCancion('cancion6')">
+        <span class="cancion-numero">06</span>
+        <span class="cancion-titulo">We Go (3RACHA)</span>
+      </div>
+
+      <div class="cancion" onclick="mostrarCancion('cancion7')">
+        <span class="cancion-numero">07</span>
+        <span class="cancion-titulo">Wow (Lee Know, Hyunjin, Felix)</span>
+      </div>
+
+      <div class="cancion" onclick="mostrarCancion('cancion8')">
+        <span class="cancion-numero">08</span>
+        <span class="cancion-titulo">My Universe (Seungmin, I.N feat. Changbin)</span>
+      </div>
+
+      <div class="cancion" onclick="mostrarCancion('cancion9')">
+        <span class="cancion-numero">09</span>
+        <span class="cancion-titulo">God's Menu (神메뉴)</span>
+      </div>
+
+     <div class="cancion" onclick="mostrarCancion('cancion10')">
+        <span class="cancion-numero">10</span>
+        <span class="cancion-titulo">Easy</span>
+      </div>
+
+     <div class="cancion" onclick="mostrarCancion('cancion11')">
+        <span class="cancion-numero">11</span>
+        <span class="cancion-titulo">Pacemaker</span>
+       </div>
+
+     <div class="cancion" onclick="mostrarCancion('cancion12')">
+        <span class="cancion-numero">12</span>
+        <span class="cancion-titulo">Airplane (비행기)</span>
+       </div>
+
+     <div class="cancion" onclick="mostrarCancion('cancion13')">
+        <span class="cancion-numero">13</span>
+        <span class="cancion-titulo">Another Day (일상)</span>
+       </div>
+
+     <div class="cancion" onclick="mostrarCancion('cancion14')">
+        <span class="cancion-numero">14</span>
+        <span class="cancion-titulo">Phobia</span>
+       </div>
+
+     <div class="cancion" onclick="mostrarCancion('cancion15')">
+        <span class="cancion-numero">15</span>
+        <span class="cancion-titulo">Blueprint (청사진)</span>
+       </div>
+
+
+     <div class="cancion" onclick="mostrarCancion('cancion16')">
+        <span class="cancion-numero">16</span>
+        <span class="cancion-titulo">Ta (타)</span>
+       </div>
+
+     <div class="cancion" onclick="mostrarCancion('cancion17')">
+        <span class="cancion-numero">17</span>
+        <span class="cancion-titulo">Haven</span>
+       </div>
+
+      <!-- Agrega más canciones siguiendo el mismo patrón -->
+
+    </div>
+  </div>
+
+  <!-- PANEL CANCIÓN 1 -->
+  <div class="letra-panel" id="cancion1">
+    <h3>The Tortoise and the Hare (토끼와 거북이)</h3>
+    <div class="spotify">
+      <iframe style="border-radius:12px"
+        src="https://open.spotify.com/embed/track/1Zv6xilw5El5P6frlNnYcH"
+        width="100%"
+        height="80"
+        frameborder="0"
+        allowtransparency="true"
+        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
+      </iframe>
+    </div>
+  </div>
+
+  <!-- PANEL CANCIÓN 2 -->
+  <div class="letra-panel" id="cancion2">
+    <h3>Back Door</h3>
+    <div class="spotify">
+      <iframe style="border-radius:12px"
+        src="https://open.spotify.com/embed/track/0XuepwFJUcKN8T5zTqoP0F"
+        width="100%"
+        height="80"
+        frameborder="0"
+        allowtransparency="true"
+        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
+      </iframe>
+    </div>
+  </div>
+
+  <!-- PANEL CANCIÓN 3 -->
+  <div class="letra-panel" id="cancion3">
+    <h3>B Me</h3>
+    <div class="spotify">
+      <iframe style="border-radius:12px"
+        src="https://open.spotify.com/embed/track/5eIB5RjmpZTE2S83gvekvz"
+        width="100%"
+        height="80"
+        frameborder="0"
+        allowtransparency="true"
+        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
+      </iframe>
+    </div>
+  </div>
+
+  <div class="letra-panel" id="cancion4">
+    <h3>Any (아니)</h3>
+    <div class="spotify">
+      <iframe style="border-radius:12px"
+        src="https://open.spotify.com/embed/track/5S7kMbtEikXwCAHMu3R3jw"
+        width="100%"
+        height="80"
+        frameborder="0"
+        allowtransparency="true"
+        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
+      </iframe>
+    </div>
+  </div>
+
+  <div class="letra-panel" id="cancion5">
+    <h3>Ex (미친 놈)</h3>
+    <div class="spotify">
+      <iframe style="border-radius:12px"
+        src="https://open.spotify.com/embed/track/4y7C13wqDLE7xuilBsLNvd"
+        width="100%"
+        height="80"
+        frameborder="0"
+        allowtransparency="true"
+        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
+      </iframe>
+    </div>
+    </div>
+
+    <div class="letra-panel" id="cancion6">
+    <h3>We Go (3RACHA) </h3>
+    <div class="spotify">
+      <iframe style="border-radius:12px"
+        src="https://open.spotify.com/embed/track/5GhuFbB6NjKzehvws0GGUP"
+        width="100%"
+        height="80"
+        frameborder="0"
+        allowtransparency="true"
+        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
+      </iframe>
+    </div>
+    </div>
+
+    <div class="letra-panel" id="cancion7">
+    <h3>Wow (Lee Know, Hyunjin, Felix)</h3>
+    <div class="spotify">
+      <iframe style="border-radius:12px"
+        src="https://open.spotify.com/embed/track/2i15lsdOIZb9PpuAFKO58Y"
+        width="100%"
+        height="80"
+        frameborder="0"
+        allowtransparency="true"
+        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
+      </iframe>
+    </div>
+    </div>
+
+    <div class="letra-panel" id="cancion8">
+    <h3>"My Universe (Seungmin, I.N feat. Changbin)</h3>
+    <div class="spotify">
+      <iframe style="border-radius:12px"
+        src="https://open.spotify.com/embed/track/4a2TlUwtrzLwjcHe1vPvj9"
+        width="100%"
+        height="80"
+        frameborder="0"
+        allowtransparency="true"
+        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
+      </iframe>
+    </div>
+    </div>
+
+    <div class="letra-panel" id="cancion9">
+    <h3>God's Menu (神메뉴)</h3>
+    <div class="spotify">
+      <iframe style="border-radius:12px"
+        src="https://open.spotify.com/embed/track/41BTPMEIhFBAqij6IUnyzb"
+        width="100%"
+        height="80"
+        frameborder="0"
+        allowtransparency="true"
+        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
+      </iframe>
+    </div>
+    </div>
+
+    <div class="letra-panel" id="cancion10">
+    <h3>Easy</h3>
+    <div class="spotify">
+      <iframe style="border-radius:12px"
+        src="https://open.spotify.com/embed/track/4lQGQuedW0yyrq1mGL3RMr"
+        width="100%"
+        height="80"
+        frameborder="0"
+        allowtransparency="true"
+        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
+      </iframe>
+    </div>
+    </div>
+
+
+
+    <div class="letra-panel" id="cancion11">
+    <h3>Pacemaker</h3>
+    <div class="spotify">
+      <iframe style="border-radius:12px"
+        src="https://open.spotify.com/embed/track/1QChR5f7Yavg2fA7Q11jdk"
+        width="100%"
+        height="80"
+        frameborder="0"
+        allowtransparency="true"
+        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
+      </iframe>
+    </div>
+    </div>
+
+
+    <div class="letra-panel" id="cancion12">
+    <h3>Airplane (비행기)</h3>
+    <div class="spotify">
+      <iframe style="border-radius:12px"
+        src="https://open.spotify.com/embed/track/5wj0RESJiZI9HXnvXx2hvs"
+        width="100%"
+        height="80"
+        frameborder="0"
+        allowtransparency="true"
+        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
+      </iframe>
+    </div>
+    </div>
+
+
+    <div class="letra-panel" id="cancion13">
+    <h3>Another Day (일상)</h3>
+    <div class="spotify">
+      <iframe style="border-radius:12px"
+        src="https://open.spotify.com/embed/track/6fsrtPKAPL1erRl4oeDnOf"
+        width="100%"
+        height="80"
+        frameborder="0"
+        allowtransparency="true"
+        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
+      </iframe>
+    </div>
+    </div>
+
+
+    <div class="letra-panel" id="cancion14">
+    <h3>Phobia</h3>
+    <div class="spotify">
+      <iframe style="border-radius:12px"
+        src="https://open.spotify.com/embed/track/16Xt6aWyMW5Ugb3nfsInJ3"
+        width="100%"
+        height="80"
+        frameborder="0"
+        allowtransparency="true"
+        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
+      </iframe>
+    </div>
+    </div>
+
+    <div class="letra-panel" id="cancion15">
+    <h3>Blueprint (청사진)</h3>
+    <div class="spotify">
+      <iframe style="border-radius:12px"
+        src="https://open.spotify.com/embed/track/55Nq3mwhH1p1FjDAzttnIN"
+        width="100%"
+        height="80"
+        frameborder="0"
+        allowtransparency="true"
+        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
+      </iframe>
+    </div>
+    </div>
+
+
+    <div class="letra-panel" id="cancion16">
+    <h3>Ta (타)</h3>
+    <div class="spotify">
+      <iframe style="border-radius:12px"
+        src="https://open.spotify.com/embed/track/5u1H4quQm0W3sYP2OqvFIJ"
+        width="100%"
+        height="80"
+        frameborder="0"
+        allowtransparency="true"
+        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
+      </iframe>
+    </div>
+    </div>
+
+
+    <div class="letra-panel" id="cancion17">
+    <h3>Haven</h3>
+    <div class="spotify">
+      <iframe style="border-radius:12px"
+        src="https://open.spotify.com/embed/track/1cO6v3YyMx1BAULiUyDy8z"
+        width="100%"
+        height="80"
+        frameborder="0"
+        allowtransparency="true"
+        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
+      </iframe>
+    </div>
+    </div>
+
+
+
+
+
+
+  </div>
+
+
+
+
+  <!-- INFO GENERAL -->
+  <div class="info-general">
+    <h2>About this album</h2>
+    <p>In Life (IN生) is a repackage of Stray Kids' first full-length album Go Live. It was released on September 14, 2020 with "Back Door" serving as the title track.</p>
+  </div>
+
+<!-- PHOTOBOOK -->
+<div class="photobook">
+  <h2>Photobook</h2>
+  <div class="fotos-grid">
+    <img src="imagenes/in11.jpg" alt="karma" onclick="abrirFoto(this.src)">
+    <img src="imagenes/in22.jpg" alt="I.N" onclick="abrirFoto(this.src)">
+    <img src="imagenes/in33.jpg" alt="Seungmin" onclick="abrirFoto(this.src)">
+    <img src="imagenes/in44.jpg" alt="Felix" onclick="abrirFoto(this.src)">
+    <img src="imagenes/in555.jpg" alt="Han" onclick="abrirFoto(this.src)">
+    <img src="imagenes/in66.jpg" alt="Hyunjin" onclick="abrirFoto(this.src)">
+    <img src="imagenes/in77.jpg" alt="Changbin" onclick="abrirFoto(this.src)">
+    <img src="imagenes/in88.jpg" alt="Leeknow" onclick="abrirFoto(this.src)">
+    <img src="imagenes/in99.jpg" alt="Bang Chan" onclick="abrirFoto(this.src)">
+    <!-- Agrega más fotos siguiendo el mismo patrón -->
+  </div>
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="cerrarFoto()">
+  <span class="lightbox-cerrar" onclick="cerrarFoto()">✕</span>
+  <img id="lightbox-img" src="" alt="foto ampliada">
+</div>
+
+  <script>
+    function mostrarCancion(id) {
+      document.querySelectorAll('.letra-panel').forEach(panel => {
+        panel.classList.remove('activo');
+      });
+      document.getElementById(id).classList.add('activo');
+      document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+    }
+
+function abrirFoto(src) {
+  document.getElementById('lightbox-img').src = src;
+  document.getElementById('lightbox').classList.add('activo');
+}
+
+function cerrarFoto() {
+  document.getElementById('lightbox').classList.remove('activo');
+}
+
+// También se cierra con la tecla Escape
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') cerrarFoto();
+});
+
+  </script>
+
+</body>
+</html>
