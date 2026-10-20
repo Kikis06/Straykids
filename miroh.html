@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clé 1 : MIROH - Stray Kids</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+  <style>
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      color: #222;
+    }
+
+    .volver {
+      display: inline-block;
+      margin: 20px 40px;
+      text-decoration: none;
+      color: #555;
+      font-size: 1rem;
+    }
+
+    .volver:hover {
+      color: black;
+    }
+
+    .album-main {
+      display: flex;
+      flex-direction: row;
+      gap: 60px;
+      padding: 40px;
+      max-width: 1100px;
+      margin: 0 auto;
+      align-items: flex-start;
+    }
+
+    .portada img {
+      width: 300px;
+      height: 300px;
+      object-fit: cover;
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+    }
+
+    .portada h1 {
+      font-family: "Bebas Neue", sans-serif;
+      font-size: 2.5rem;
+      margin-top: 16px;
+    }
+
+    .portada p {
+      color: #777;
+      margin-top: 6px;
+    }
+
+    .canciones {
+      flex: 1;
+    }
+
+    .canciones h2 {
+      font-family: "Bebas Neue", sans-serif;
+      font-size: 1.8rem;
+      margin-bottom: 16px;
+    }
+
+    .cancion {
+      padding: 12px 16px;
+      border-bottom: 1px solid #ddd;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      transition: background 0.2s;
+    }
+
+    .cancion:hover {
+      background-color: #eee;
+      border-radius: 8px;
+    }
+
+    .cancion-numero {
+      color: #aaa;
+      font-size: 0.9rem;
+      width: 20px;
+    }
+
+    .cancion-titulo {
+      font-size: 1rem;
+      font-weight: bold;
+    }
+
+    .letra-panel {
+      display: none;
+      max-width: 1100px;
+      margin: 20px auto;
+      padding: 40px;
+      background: white;
+      border-radius: 12px;
+    }
+
+    .letra-panel.activo {
+      display: block;
+    }
+
+    .letra-panel h3 {
+      font-family: "Bebas Neue", sans-serif;
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+    }
+
+    .spotify {
+      margin-bottom: 24px;
+    }
+
+    .info-general {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 40px;
+      border-top: 1px solid #ddd;
+    }
+
+    .info-general h2 {
+      font-family: "Bebas Neue", sans-serif;
+      font-size: 1.8rem;
+      margin-bottom: 16px;
+    }
+
+    .info-general p {
+      line-height: 1.8;
+      color: #444;
+    }
+
+    .photobook {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 40px;
+      border-top: 1px solid #ddd;
+    }
+
+    .photobook h2 {
+      font-family: "Bebas Neue", sans-serif;
+      font-size: 1.8rem;
+      margin-bottom: 24px;
+    }
+
+    .fotos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 12px;
+    }
+
+    .fotos-grid img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: transform 0.2s, opacity 0.2s;
+    }
+
+    .fotos-grid img:hover {
+      transform: scale(1.03);
+      opacity: 0.9;
+    }
+
+    .lightbox {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.9);
+        z-index: 999;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .lightbox.activo {
+        display: flex;
+    }
+
+    .lightbox img {
+        max-width: 90%;
+        max-height: 90vh;
+        border-radius: 12px;
+        box-shadow: 0 0 40px rgba(0,0,0,0.5);
+    }
+
+    .lightbox-cerrar {
+        position: absolute;
+        top: 20px;
+        right: 30px;
+        font-size: 2.5rem;
+        color: white;
+        cursor: pointer;
+        line-height: 1;
+    }
+
+    .lightbox-cerrar:hover {
+    color: #aaa;
+    }
+
+
+
+</style>
+</head>
+<body>
+
+  <a href="index.html" class="volver">← Back</a>
+
+  <div class="album-main">
+    <div class="portada">
+      <img src="imagenes/clé 1 MIROH.jpg" alt="Clé 1 : MIROH">
+      <h1>Clé 1 : MIROH</h1>
+      <p>Release: 25/03/2019</p>
+    </div>
+
+    <div class="canciones">
+      <h2>Track List</h2>
+
+      <div class="cancion" onclick="mostrarCancion('cancion1')">
+        <span class="cancion-numero">01</span>
+        <span class="cancion-titulo">Entrance</span>
+      </div>
+
+      <div class="cancion" onclick="mostrarCancion('cancion2')">
+        <span class="cancion-numero">02</span>
+        <span class="cancion-titulo">MIROH</span>
+      </div>
+
+      <div class="cancion" onclick="mostrarCancion('cancion3')">
+        <span class="cancion-numero">03</span>
+        <span class="cancion-titulo">Victory Song (승전가)</span>
+      </div>
+
+      <div class="cancion" onclick="mostrarCancion('cancion4')">
+        <span class="cancion-numero">04</span>
+        <span class="cancion-titulo">Maze of Memories (잠깐의 고요)</span>
+      </div>
+
+      <div class="cancion" onclick="mostrarCancion('cancion5')">
+        <span class="cancion-numero">05</span>
+        <span class="cancion-titulo">Boxer</span>
+      </div>
+
+      <div class="cancion" onclick="mostrarCancion('cancion6')">
+        <span class="cancion-numero">06</span>
+        <span class="cancion-titulo">Chronosaurus</span>
+      </div>
+
+      <div class="cancion" onclick="mostrarCancion('cancion7')">
+        <span class="cancion-numero">07</span>
+        <span class="cancion-titulo">19</span>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="letra-panel" id="cancion1">
+    <h3>Entrance</h3>
+    <div class="spotify">
+      <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/6N0TTiyaMY9bwajeXkTigu" width="100%" height="80" frameborder="0" allowtransparency="true" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+    </div>
+  </div>
+
+  <div class="letra-panel" id="cancion2">
+    <h3>MIROH</h3>
+    <div class="spotify">
+      <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/13e2aslSF5yAxbiroTd1v8" width="100%" height="80" frameborder="0" allowtransparency="true" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+    </div>
+  </div>
+
+  <div class="letra-panel" id="cancion3">
+    <h3>Victory Song (승전가)</h3>
+    <div class="spotify">
+      <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/3B3KKlOkhsC63QLsosWhXy" width="100%" height="80" frameborder="0" allowtransparency="true" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+    </div>
+  </div>
+
+  <div class="letra-panel" id="cancion4">
+    <h3>Maze of Memories (잠깐의 고요)</h3>
+    <div class="spotify">
+      <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/4rKuQzLemPCQME93izyj1H" width="100%" height="80" frameborder="0" allowtransparency="true" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+    </div>
+  </div>
+
+  <div class="letra-panel" id="cancion5">
+    <h3>Boxer</h3>
+    <div class="spotify">
+      <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/0mvtQ3E1f5Yb7YuyrLDv4q" width="100%" height="80" frameborder="0" allowtransparency="true" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+    </div>
+  </div>
+
+  <div class="letra-panel" id="cancion6">
+    <h3>Chronosaurus</h3>
+    <div class="spotify">
+      <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/2J04vEzPQB7XSoDDfki8DY" width="100%" height="80" frameborder="0" allowtransparency="true" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+    </div>
+  </div>
+
+  <div class="letra-panel" id="cancion7">
+    <h3>19</h3>
+    <div class="spotify">
+      <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/7f1dhjn93kIxAhbdNiyTQF" width="100%" height="80" frameborder="0" allowtransparency="true" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+    </div>
+  </div>
+
+
+
+  <!-- INFO GENERAL -->
+  <div class="info-general">
+    <h2>About this album</h2>
+    <p>"Clé 1 : MIROH" is the first album of the Clé series by Stray Kids. It was released on March 25, 2019 with "MIROH" as the title track.</p>
+  </div>
+
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox" onclick="cerrarFoto()">
+    <span class="lightbox-cerrar" onclick="cerrarFoto()">✕</span>
+    <img id="lightbox-img" src="" alt="foto ampliada">
+  </div>
+
+  <script>
+    function mostrarCancion(id) {
+      document.querySelectorAll('.letra-panel').forEach(panel => {
+        panel.classList.remove('activo');
+      });
+      document.getElementById(id).classList.add('activo');
+      document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function abrirFoto(src) {
+      document.getElementById('lightbox-img').src = src;
+      document.getElementById('lightbox').classList.add('activo');
+    }
+
+    function cerrarFoto() {
+      document.getElementById('lightbox').classList.remove('activo');
+    }
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') cerrarFoto();
+    });
+  </script>
+
+</body>
+</html>
